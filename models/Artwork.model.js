@@ -1,0 +1,45 @@
+const {Schema, model} = require('mongoose');
+
+const artworkSchema = new Schema(
+    {
+        title: {
+            type: String,
+            required: true
+        },
+        image: String,
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
+        description: String,
+        yearOfCreation: {
+           type: Number, 
+        },
+        typeOfArt: {
+            type: String,
+            enum: [
+                pintura,
+                grafitis,
+                murales,
+                stencilArt,
+                escultura, 
+                dibujo,
+                grabado,
+                arteDelVidrio,
+                orfebrería,
+                ebanistería,
+                cerámica,
+                fotografía,
+                otros
+            ],
+
+        },
+        
+
+    }
+)
+
+const Artwork = model('Artwork', artworkSchema);
+
+module.exports = Artwork;
