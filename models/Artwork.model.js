@@ -19,25 +19,24 @@ const artworkSchema = new Schema(
         typeOfArt: {
             type: String,
             enum: [
-                pintura,
-                grafitis,
-                murales,
-                stencilArt,
-                escultura, 
-                dibujo,
-                grabado,
-                arteDelVidrio,
-                orfebrería,
-                ebanistería,
-                cerámica,
-                fotografía,
-                otros
+                "pintura",
+                "grafitis",
+                "murales",
+                "stencilArt",
+                "escultura", 
+                "dibujo",
+                "grabado",
+                "arteDelVidrio",
+                "orfebrería",
+                "ebanistería",
+                "cerámica",
+                "fotografía",
+                "otros"
             ],
 
         },
-        
-
-    }
+    },
+   
 )
 
 const Artwork = model('Artwork', artworkSchema);

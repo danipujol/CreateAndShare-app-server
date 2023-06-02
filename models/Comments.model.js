@@ -16,6 +16,9 @@ const commentsSchema = new Schema({
         type: String,
        },
        publicationDate: Date   
+},
+{
+    timestamps: true
 }
 )
 

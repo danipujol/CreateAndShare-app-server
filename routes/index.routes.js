@@ -6,4 +6,9 @@ router.get("/", (req, res, next) => {
 
  router.use("/auth", require("./auth.routes"))
 
+
+ router.use("/artistas", require("./artist.routes"))
+
+router.use("/obra", require("./artWork.routes")) 
+
 module.exports = router;
