@@ -9,6 +9,12 @@ router.get("/", (req, res, next) => {
 
  router.use("/artistas", require("./artist.routes"))
 
-router.use("/obra", require("./artWork.routes")) 
+
+router.use("/obra", require("./artWork.routes"))
+
+router.use("/comentarios", require("./comments.routes"))
+
+router.use("/uploader", require("./uploader.routes"))
+
 
 module.exports = router;

@@ -40,7 +40,12 @@ const userSchema = new Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user",
-    }
+    },
+  // artWorks: {
+  //       type: Schema.Types.ObjectId,
+  //       ref: "Artwork"
+  //     }
+
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

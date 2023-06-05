@@ -6,7 +6,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 
 // POST "/api/auth/signup" => Para registrar al usuario
 router.post("/signup", async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const {username, name, firstName, email, actualCity, dateOfBirth,  password,} = req.body;
 
@@ -28,7 +28,7 @@ router.post("/signup", async (req, res, next) => {
 // encriptar la contraseña
 const salt = await bcrypt.genSalt(10)
 const hashPassword = await bcrypt.hash(password, salt)
-console.log(hashPassword)
+// console.log(hashPassword)
 
   await User.create({
     username: username,
@@ -53,7 +53,7 @@ console.log(hashPassword)
 
 router.post("/login", async (req, res, next) => {
 
-    console.log(req.body)
+    // console.log(req.body)
     const { username, password } = req.body
   
     // validaciones del login como que los campos esten llenos
@@ -108,7 +108,7 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
   
     // cuando usemos el middleware isAuthenticated tendremos acceso a saber QUIEN es el usuario haciendo la llamada (req.session.user)
   
-    console.log( req.payload ) // el usuario activo
+    // console.log( req.payload ) // el usuario activo
   
     res.json({ payload: req.payload })
   

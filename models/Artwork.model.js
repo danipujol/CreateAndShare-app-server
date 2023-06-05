@@ -14,7 +14,7 @@ const artworkSchema = new Schema(
         },
         description: String,
         yearOfCreation: {
-           type: Number, 
+           type: Number 
         },
         typeOfArt: {
             type: String,
@@ -22,7 +22,6 @@ const artworkSchema = new Schema(
                 "pintura",
                 "grafitis",
                 "murales",
-                "stencilArt",
                 "escultura", 
                 "dibujo",
                 "grabado",
@@ -35,7 +34,11 @@ const artworkSchema = new Schema(
             ],
 
         },
+       
     },
+    {
+        timestamps: true
+    }
    
 )
 
