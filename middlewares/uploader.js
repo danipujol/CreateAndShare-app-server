@@ -16,4 +16,5 @@ const storage = new CloudinaryStorage({
     // resource_type: 'raw' => this is in case you want to upload other type of files, not just images
   },
 });
+
 module.exports = multer({ storage });
