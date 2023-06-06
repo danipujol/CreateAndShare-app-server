@@ -10,7 +10,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 router.get("/", async (req, res, next) => {
   try {
     const response = await User.find(); //.select({username: 1})
-    console.log(response);
+    // console.log(response);
     res.json(response);
   } catch (error) {
     next(error);
@@ -24,13 +24,33 @@ router.get("/:artistaId/detalles", async (req, res, next) => {
 
   try {
     const response = await User.findById(artistaId); //Buscamos el artista
-    const artWorks = await Artwork.findOne({ creator: artistaId }); // Buscamos las obras del artista
-    // console.log(response)
-    res.json(response, artWorks); //todo mirar que esté bien la sintaxis
+    const artWorks = await Artwork.find({ creator: artistaId }).limit(8).sort({createdAt: -1}); // Buscamos las obras del artista
+    //console.log(response)
+    res.json({ response, artWorks }); 
   } catch (error) {
     next(error);
   }
 });
+
+//GET: /artistas/mi-perfil
+router.get("/mi-perfil", isAuthenticated, async (req, res, next) => {
+
+const myId = req.payload._id 
+
+  try{
+
+    const response = await User.findById(myId)
+    const artWorks = await Artwork.find({ creator: myId }).limit(8).sort({createdAt: -1})
+
+    res.json({response, artWorks})
+
+  }catch(error){
+    next(error)
+  }
+
+})
+
+
 
 //PUT: /artistas/:artistaId/editar-> para editar solo ID
 

@@ -33,7 +33,7 @@ const User = require("../models/User.model")
  //GET: "/obras" -> enviar al FronEnd todas las obras (titulos y imagenes)
  router.get("/", async (req, res, next) => {
  try {
- const response = await ArtWork.find().sort({createdAt: 1}).limit(20) // estarian las ultimas 20 obras creadas en la vista
+ const response = await ArtWork.find().sort({createdAt: -1}).limit(20) // estarian las ultimas 20 obras creadas en la vista
  //todo comprobar si creatAt: 1 es de la mas reciente a la mas antigua sino es -1
  // acabar de pulir si poner un .select
  res.json(response)
@@ -64,6 +64,9 @@ router.get("/:id/detalles", async (req, res, next) => {
         next(error)
     }
 })
+
+
+
 
 
 //PUT: "/obra/:obraId/editar" -> recibir la info y actualizarla en la BD
