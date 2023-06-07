@@ -9,7 +9,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 
 router.get("/", async (req, res, next) => {
   try {
-    const response = await User.find(); //.select({username: 1})
+    const response = await User.find().limit(20).sort({createdAt: -1}).select({username: 1})
     // console.log(response);
     res.json(response);
   } catch (error) {
@@ -24,7 +24,7 @@ router.get("/:artistaId/detalles", async (req, res, next) => {
 
   try {
     const response = await User.findById(artistaId); //Buscamos el artista
-    const artWorks = await Artwork.find({ creator: artistaId }).limit(8).sort({createdAt: -1}); // Buscamos las obras del artista
+    const artWorks = await Artwork.find({ creator: artistaId }).limit(20).sort({createdAt: -1}); // Buscamos las obras del artista
     //console.log(response)
     res.json({ response, artWorks }); 
   } catch (error) {
@@ -40,7 +40,7 @@ const myId = req.payload._id
   try{
 
     const response = await User.findById(myId)
-    const artWorks = await Artwork.find({ creator: myId }).limit(8).sort({createdAt: -1})
+    const artWorks = await Artwork.find({ creator: myId }).limit(20).sort({createdAt: -1})
 
     res.json({response, artWorks})
 

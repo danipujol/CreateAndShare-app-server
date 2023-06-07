@@ -36,6 +36,7 @@ try{
 //en teoria lo tenemos hecho en la ruta de obra/detalles
 
 
+
 //todo. POST->para editar?
 //de momento solo eliminar comentario y crear
 
