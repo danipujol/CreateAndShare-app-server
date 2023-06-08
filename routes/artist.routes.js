@@ -8,10 +8,18 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 //todo falta (filtrar por los que tienen contenido)
 
 router.get("/", async (req, res, next) => {
+  
   try {
-    const response = await User.find().limit(20).sort({createdAt: -1}).select({username: 1})
-    // console.log(response);
+    const response = await User.find().limit(20).sort({createdAt: -1})
+    .select({username: 1, name: 1, firstName: 1})
+    //const oneArtwork = await Artwork.findOne({ creator: response._id })
+    // .sort({ createdAt: -1 })
+    // .select({ title: 1, image: 1 });
+    console.log(response);
+    //console.log(oneArtwork)
     res.json(response);
+    // res.json({response, oneArtwork});
+
   } catch (error) {
     next(error);
   }

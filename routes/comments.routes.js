@@ -41,7 +41,7 @@ const {artworkId} = req.params
 
 try {
 
-const comment = await Comments.find({artWorkComment: artworkId}).limit(10).sort({createdAt: -1})
+const comment = await Comments.find({artWorkComment: artworkId}).limit(10).sort({createdAt: -1}).populate("userComment", "username") 
 res.json(comment)
 
 }catch(error){

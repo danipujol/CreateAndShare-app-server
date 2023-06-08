@@ -13,6 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Name is required.']
      },
+    
      firstName:{
       type: String,
       required: [true, 'First name is required.']
@@ -41,11 +42,7 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-  // artWorks: {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "Artwork"
-  //     }
-
+    
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

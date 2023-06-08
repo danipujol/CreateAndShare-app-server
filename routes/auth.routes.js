@@ -20,6 +20,7 @@ router.post("/signup", async (req, res, next) => {
 
   try {
     const foundUser = await User.findOne({ username: username });
+   
     if (foundUser) {
       res.status(400).json({ errorMessage: "Usuario ya registrado" });
       return;
@@ -109,6 +110,7 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
     // cuando usemos el middleware isAuthenticated tendremos acceso a saber QUIEN es el usuario haciendo la llamada (req.session.user)
   
     // console.log( req.payload ) // el usuario activo
+    
   
     res.json({ payload: req.payload })
   
