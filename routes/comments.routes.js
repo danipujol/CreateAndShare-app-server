@@ -35,6 +35,20 @@ try{
 //GET: "/comentarios" ->listar los comentarios en las obras de arte 
 //en teoria lo tenemos hecho en la ruta de obra/detalles
 
+router.get("/:artworkId/comentarios", async (req, res, next) => {
+
+const {artworkId} = req.params
+
+try {
+
+const comment = await Comments.find({artWorkComment: artworkId}).limit(10).sort({createdAt: -1})
+res.json(comment)
+
+}catch(error){
+    next(error)
+}
+
+})
 
 
 //todo. POST->para editar?

@@ -11,8 +11,9 @@ const User = require("../models/User.model")
 //POST:"/obra/crear" -> enviar a recibir del FE los detalles de una obra y crearla en la BD
   router.post("/crear", isAuthenticated, async (req, res, next) => {
     const {title, image, description, yearOfCreation, typeOfArt} = req.body
+    console.log(req.body)
   try{
-    
+   
   await ArtWork.create({
     title,
     image,
@@ -31,17 +32,34 @@ const User = require("../models/User.model")
 
 
  //GET: "/obras" -> enviar al FronEnd todas las obras (titulos y imagenes)
- router.get("/", async (req, res, next) => {
+ router.get("/", async (req, res, next) => { //pasar el parametre
+  const {searchText} = req.body
  try {
- const response = await ArtWork.find().sort({createdAt: -1}).limit(20) // estarian las ultimas 20 obras creadas en la vista
+
+  //condicional de si el parametre esta buit fa aixo
+let response;
+console.log(searchText)
+  if(!searchText){
+     response = await ArtWork.find().sort({createdAt: -1}).limit(20)
+  }else{
+      response = await ArtWork.find({ 'typeOfArt': searchText}).sort({createdAt: -1}).limit(20)
+  }
+
+  // estarian las ultimas 20 obras creadas en la vista
  //todo comprobar si creatAt: 1 es de la mas reciente a la mas antigua sino es -1
  // acabar de pulir si poner un .select
+
+ // si el parametre te algo, que filtri
+
+
  res.json(response)
 
  } catch(error){
      next(error)
  }
  });
+
+
 
 
 
@@ -53,11 +71,7 @@ router.get("/:id/detalles", async (req, res, next) => {
 
     try{
         const artwork = await ArtWork.findById(id).populate("creator", "username") //aqui vemos las obras con el nombre del creador unicamente
-        // .populate(Comments)
-
-        // const comments = await Comments.find({artWorkComment: id})// podemos ver los comentarios de la obra de los usuarios
-        // // console.log({response, Comments})
-
+       
     res.json(artwork)
 
     }catch(error){
